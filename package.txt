@@ -1,0 +1,34 @@
+npm init -y 
+npm install express dotenv mongoose express-validator bcryptjs jsonwebtoken cookie-parser cors
+
+//seeding sample users and manager 
+node .\backend\seed\seed.js
+
+
+npm create vite@latest frontend
+=> React
+=> Javascript
+cd frontend npm install
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+npm install daisyui
+
+npm install react-icons recharts
+
+//icon 
+Dashboard: MdDashboard from react-icons/md
+Wallet (Payroll Management): GiWallet from react-icons/gi
+Gears (Benefits Management): GiGears from react-icons/gi
+Checklist (Compensation Planning): GiChecklist from react-icons/gi
+User (User Management): FaRegUser from react-icons/fa
+File Search (Reports): AiOutlineFileSearch from react-icons/ai
+Shield Lock (Compliance Management): BsFillShieldLockFill from react-icons/bs
+Stats (Analytics): IoIosStats from react-icons/io
+Arrow Down: IoIosArrowDown from react-icons/io
+Arrow Up: IoIosArrowUp from react-icons/io
+
+//the charts is for example reference
+
+npm install react-router-dom axios zustand
