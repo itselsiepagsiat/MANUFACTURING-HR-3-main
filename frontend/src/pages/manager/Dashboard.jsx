@@ -2,7 +2,7 @@ import React from 'react'
 
 const Dashboard = () => {
   return (
-    <div> COMMIT Dashboard</div>
+    <div> eto binago kona </div>
   )
 }
 
