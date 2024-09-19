@@ -1,73 +1,50 @@
 import React, { useState } from 'react';
 
-// Example function to simulate API call
-const fetchData = async (requestType) => {
-  // Simulate an API call based on request type
-  // In a real application, replace this with actual API requests
-  return new Promise((resolve) => setTimeout(() => resolve(`Data for ${requestType}`), 1000));
-};
+const CompensationRequests = () => {
+  const [requests, setRequests] = useState([
+    { id: 1, name: 'Request Payroll Records', description: 'Request payroll records for the current year' },
+    { id: 2, name: 'Request Legal Review', description: 'Request a legal review of the current compensation structure' },
+    { id: 3, name: 'Request Compensation Review', description: 'Request a review of the current compensation package' },
+    { id: 4, name: 'Request Salary Structure Details', description: 'Request details of the current salary structure' },
+    { id: 5, name: 'Request to Store Documents', description: 'Request to store compensation-related documents' },
+    { id: 6, name: 'Request Incentives Details', description: 'Request details of the current incentives structure' },
+  ]);
 
-const CompensationOptimization = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [requestStatus, setRequestStatus] = useState('');
 
-  const handleRequest = async (requestType) => {
-    setLoading(true);
-    const result = await fetchData(requestType);
-    setData(result);
-    setLoading(false);
+  const handleRequestClick = (request) => {
+    setSelectedRequest(request);
+  };
+
+  const handleRequestSubmit = () => {
+    if (selectedRequest) {
+      setRequestStatus(`Request for ${selectedRequest.name} submitted successfully`);
+    }
   };
 
   return (
-    <div className="p-6 shadow-md ">
-      <h1 className="text-2xl font-bold mb-4">Compensation Optimization</h1>
-      <div className="grid gap-4 mb-4">
-        <button
-          onClick={() => handleRequest('Payroll Records')}
-          className="btn btn-primary"
-        >
-          Request Payroll Records
-        </button>
-        <button
-          onClick={() => handleRequest('Legal Review')}
-          className="btn btn-primary"
-        >
-          Request Legal Review
-        </button>
-        <button
-          onClick={() => handleRequest('Compensation Review')}
-          className="btn btn-primary"
-        >
-          Request Compensation Review
-        </button>
-        <button
-          onClick={() => handleRequest('Salary Structure')}
-          className="btn btn-primary"
-        >
-          Request Salary Structure Details
-        </button>
-        <button
-          onClick={() => handleRequest('Store Documents')}
-          className="btn btn-primary"
-        >
-          Request to Store Documents
-        </button>
-        <button
-          onClick={() => handleRequest('Incentives')}
-          className="btn btn-primary"
-        >
-          Request Incentive Details
-        </button>
+    <div className="max-w-7xl mx-auto p-8 sm:p-12 md:p-16 bg-gray-100">
+      <h1 className="text-4xl font-bold text-gray-900 mb-8">Compensation Requests</h1>
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+        {requests.map((request) => (
+          <div key={request.id} className="bg-white shadow-lg p-8 rounded-lg cursor-pointer hover:shadow-xl" onClick={() => handleRequestClick(request)}>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">{request.name}</h2>
+            <p className="text-lg text-gray-500">{request.description}</p>
+          </div>
+        ))}
       </div>
-      {loading && <p className="text-blue-600">Loading...</p>}
-      {data && (
-        <div className="mt-4 p-4 border border-blue-500 rounded-lg">
-          <h2 className="text-xl font-semibold">Data:</h2>
-          <p>{data}</p>
+      {selectedRequest && (
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Selected Request: {selectedRequest.name}</h2>
+          <button className="btn btn-primary" onClick={handleRequestSubmit}>
+            Submit Request
+          </button>
+          {requestStatus && <p className="text-lg text-green-500 mt-4">{requestStatus}</p>}
         </div>
       )}
     </div>
   );
 };
 
-export default CompensationOptimization;
+export default CompensationRequests;
