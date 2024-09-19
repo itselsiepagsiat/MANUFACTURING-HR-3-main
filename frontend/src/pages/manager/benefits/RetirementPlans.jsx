@@ -49,7 +49,7 @@ const RetirementPlans = () => {
               className="input input-bordered w-full mt-1"
               value={employee}
               onChange={(e) => setEmployee(e.target.value)}
-              placeholder="e.g., Elsie"
+              placeholder="e.g., Name"
             />
           </div>
           <div>
