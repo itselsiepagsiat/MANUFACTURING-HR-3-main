@@ -31,7 +31,7 @@ const EquityAdjustments = () => {
             className="input input-bordered w-full mt-1"
             value={employeeName}
             onChange={(e) => setEmployeeName(e.target.value)}
-            placeholder="Enter employee name"
+            placeholder="Enter a name"
           />
         </div>
 
