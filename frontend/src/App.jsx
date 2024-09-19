@@ -36,6 +36,7 @@ import PredictiveTurnoverAnalysis from './pages/manager/Predictive/PredictiveTur
 import EmployeePerformanceForecasting from './pages/manager/Predictive/EmployeePerformanceForecasting';
 import BenefitsUtilizationsAnalysis from './pages/manager/Predictive/BenefitsUtilizationsAnalysis';
 import CompensationOptimization from './pages/manager/Predictive/CompensationOptimization';
+import RequestBudget from './pages/manager/Finance/RequestBudget';
 
 const App = () => {
   const { checkAuth, isAuthenticated } = useAuthStore();
@@ -84,6 +85,7 @@ const App = () => {
                   <Route path="/employee-performance-forecasting" element={<ProtectedRoute> <EmployeePerformanceForecasting/> </ProtectedRoute>} />
                   <Route path="/benefits-utilization-analysis" element={<ProtectedRoute> <BenefitsUtilizationsAnalysis/> </ProtectedRoute>} />
                   <Route path="/compensation-optimization" element={<ProtectedRoute> <CompensationOptimization/> </ProtectedRoute>} />
+                  <Route path="/request-budget" element={<ProtectedRoute> <RequestBudget/> </ProtectedRoute>} />
 
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>

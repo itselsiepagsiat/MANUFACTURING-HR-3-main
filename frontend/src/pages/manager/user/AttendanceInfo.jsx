@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 
-// Example data structure
 const initialData = [
-  { id: 1, name: 'Elsie', date: '2024-10-03', status: 'Present' },
-  { id: 2, name: 'Rhea', date: '2024-10-03', status: 'Absent' },
+  { id: 1, name: 'Elsie', date: '2024-10-03', timeIn: '09:00 AM', timeOut: '05:00 PM', status: 'Present' },
+  { id: 2, name: 'Rhea', date: '2024-10-03', timeIn: '00:00 AM', timeOut: '00:00 PM', status: 'Absent' },
   // Add more sample data as needed
 ];
 
@@ -34,8 +33,10 @@ const AttendanceInfo = () => {
             <th className="px-4 py-2">ID</th>
             <th className="px-4 py-2">Name</th>
             <th className="px-4 py-2">Date</th>
+            <th className="px-4 py-2">Time In</th> {/* New column for time in */}
+            <th className="px-4 py-2">Time Out</th> {/* New column for time out */}
             <th className="px-4 py-2">Status</th>
-            <th className="px-4 py-2">Actions</th> {/* New column for actions */}
+            <th className="px-4 py-2">Actions</th> {/* Column for actions */}
           </tr>
         </thead>
         <tbody>
@@ -44,6 +45,8 @@ const AttendanceInfo = () => {
               <td className="px-4 py-2">{record.id}</td>
               <td className="px-4 py-2">{record.name}</td>
               <td className="px-4 py-2">{record.date}</td>
+              <td className="px-4 py-2">{record.timeIn}</td> {/* Display time in */}
+              <td className="px-4 py-2">{record.timeOut}</td> {/* Display time out */}
               <td className="px-4 py-2">{record.status}</td>
               <td className="px-4 py-2">
                 <button 
