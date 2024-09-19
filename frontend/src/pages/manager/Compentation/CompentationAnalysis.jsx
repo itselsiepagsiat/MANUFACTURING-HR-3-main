@@ -14,7 +14,7 @@ const CompensationAnalysis = () => {
         label: 'Compensation Breakdown',
         data: [5000, 1500, 2000, 500],
         backgroundColor: [
-          '#FF6384',
+          '#D91656',
           '#36A2EB',
           '#FFCE56',
           '#4BC0C0',
