@@ -1,61 +1,66 @@
 import React, { useState } from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const EmployeePerformanceForecasting = () => {
-  const [employeeName, setEmployeeName] = useState('');
-  const [performanceData, setPerformanceData] = useState('');
-  const [forecast, setForecast] = useState(null);
+  const [employees, setEmployees] = useState([
+    { name: 'Elsie', currentPerformance: 80, forecastedPerformance: 90 },
+    { name: 'Rhea', currentPerformance: 70, forecastedPerformance: 85 },
+    { name: 'Remie', currentPerformance: 90, forecastedPerformance: 95 },
+  ]);
 
-  const handleSubmit = () => {
-    // Simulated forecast logic (this should be replaced with real forecasting logic)
-    const performanceValue = parseFloat(performanceData) || 0;
-    const forecastResult = `Forecast for ${employeeName}: PHP ${performanceValue * 1.1.toFixed(2)} expected based on input data.`;
-    setForecast(forecastResult);
+  const forecastData = employees.map((employee) => ({
+    name: employee.name,
+    current: employee.currentPerformance,
+    forecasted: employee.forecastedPerformance,
+  }));
+
+  const handlePerformanceChange = (index, value, type) => {
+    const updatedEmployees = [...employees];
+    if (type === 'current') {
+      updatedEmployees[index].currentPerformance = value;
+    } else {
+      updatedEmployees[index].forecastedPerformance = value;
+    }
+    setEmployees(updatedEmployees);
   };
 
   return (
-    <div className="p-6 max-w-md rounded-xl shadow-md space-y-4">
-      <h2 className="text-2xl font-semibold text-center">Employee Performance Forecasting</h2>
-      
-      <div className="space-y-4">
-        <div>
-          <label htmlFor="employeeName" className="block text-sm font-medium text-gray-700">Employee Name</label>
-          <input
-            id="employeeName"
-            type="text"
-            value={employeeName}
-            onChange={(e) => setEmployeeName(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            placeholder="Enter employee name"
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="performanceData" className="block text-sm font-medium text-gray-700">Performance Data (in PHP)</label>
-          <input
-            id="performanceData"
-            type="number"
-            step="0.01"
-            value={performanceData}
-            onChange={(e) => setPerformanceData(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            placeholder="Enter performance data in PHP"
-          />
-        </div>
-        
-        <button
-          onClick={handleSubmit}
-          className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Forecast Performance
-        </button>
-        
-        {forecast && (
-          <div className="mt-4 p-4 bg-gray-100 rounded-md shadow-sm">
-            <h3 className="text-lg font-semibold">Forecast Result</h3>
-            <p>{forecast}</p>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Employee Performance Forecasting</h1>
+      <div className="flex flex-col md:flex-row justify-center mb-4">
+        {employees.map((employee, index) => (
+          <div key={employee.name} className="md:w-1/3 p-4 bg-white rounded shadow-md mx-2 mb-4">
+            <h2 className="text-xl font-bold mb-2">{employee.name}</h2>
+            <div className="flex justify-between mb-2">
+              <label className="text-lg">Current Performance:</label>
+              <input
+                type="number"
+                value={employee.currentPerformance}
+                onChange={(e) => handlePerformanceChange(index, parseInt(e.target.value), 'current')}
+                className="w-20 p-2 border border-gray-400 rounded"
+              />
+            </div>
+            <div className="flex justify-between mb-2">
+              <label className="text-lg">Forecasted Performance:</label>
+              <input
+                type="number"
+                value={employee.forecastedPerformance}
+                onChange={(e) => handlePerformanceChange(index, parseInt(e.target.value), 'forecasted')}
+                className="w-20 p-2 border border-gray-400 rounded"
+              />
+            </div>
           </div>
-        )}
+        ))}
       </div>
+      <LineChart width={800} height={400} data={forecastData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="current" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="forecasted" stroke="#82ca9d" />
+      </LineChart>
     </div>
   );
 };
