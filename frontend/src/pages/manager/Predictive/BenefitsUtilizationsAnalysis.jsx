@@ -1,97 +1,112 @@
 import React, { useState } from 'react';
 
-const BenefitsUtilizationsAnalysis = () => {
-  // State to manage input values and the list of data entries
-  const [benefitName, setBenefitName] = useState('');
-  const [utilization, setUtilization] = useState('');
-  const [data, setData] = useState([]);
+const defaultBenefitsUtilization = [
+  { id: 1, benefit: 'Health Insurance', utilizationRate: 80, cost: 1000 },
+  { id: 2, benefit: 'Dental Insurance', utilizationRate: 70, cost: 500 },
+  { id: 3, benefit: 'Vision Insurance', utilizationRate: 60, cost: 300 },
+  { id: 4, benefit: 'Life Insurance', utilizationRate: 50, cost: 200 },
+  { id: 5, benefit: 'Disability Insurance', utilizationRate: 40, cost: 150 },
+];
 
-  // Function to handle form submission
-  const handleAddData = (e) => {
-    e.preventDefault();
-    
-    // Add the new entry to the data list
-    setData([
-      ...data,
-      {
-        benefitName,
-        utilization: Number(utilization),
-      }
-    ]);
+const BenefitsUtilizationAnalysis = () => {
+  const [benefitsUtilization, setBenefitsUtilization] = useState(defaultBenefitsUtilization);
+  const [newBenefit, setNewBenefit] = useState('');
+  const [newUtilizationRate, setNewUtilizationRate] = useState(0);
+  const [newCost, setNewCost] = useState(0);
 
-    // Reset the form fields
-    setBenefitName('');
-    setUtilization('');
+  const handleAddBenefit = () => {
+    const newBenefitsUtilization = {
+      id: benefitsUtilization.length + 1,
+      benefit: newBenefit,
+      utilizationRate: newUtilizationRate,
+      cost: newCost,
+    };
+    setBenefitsUtilization([...benefitsUtilization, newBenefitsUtilization]);
+    setNewBenefit('');
+    setNewUtilizationRate(0);
+    setNewCost(0);
+  };
+
+  const handleRemoveBenefit = (id) => {
+    setBenefitsUtilization(benefitsUtilization.filter((benefit) => benefit.id !== id));
   };
 
   return (
-    <div className="p-6 max-w-4xl rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4">Benefits Utilization Analysis</h2>
-      
-      {/* Form for inputting benefits data */}
-      <form onSubmit={handleAddData} className="mb-6">
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Benefit Name</label>
-            <input
-              type="text"
-              value={benefitName}
-              onChange={(e) => setBenefitName(e.target.value)}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-              placeholder="Enter benefit name"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Utilization (%)</label>
-            <input
-              type="number"
-              value={utilization}
-              onChange={(e) => setUtilization(e.target.value)}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-              placeholder="Enter utilization percentage"
-              required
-              min="0"
-              max="100"
-            />
+    <div className="max-w-7xl mx-auto p-4 sm:p-6 md:p-8">
+      <h1 className="text-3xl font-bold text-white-900">Benefits Utilization Analysis</h1>
+      <div className="flex flex-col mt-4">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="overflow-hidden">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Benefit</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilization Rate (%)</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {benefitsUtilization.map((benefit) => (
+                    <tr key={benefit.id}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{benefit.benefit}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{benefit.utilizationRate}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{benefit.cost}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <button
+                          className="text-red-600 hover:text-red-900"
+                          onClick={() => handleRemoveBenefit(benefit.id)}
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
+      </div>
+      <div className="flex flex-col mt-4">
+        <h2 className="text-xl font-bold text-white-900">Add New Benefit</h2>
+        <div className="flex flex-col mt-2">
+          <label className="text-sm text-gray-500">Benefit</label>
+          <input
+            type="text"
+            value={newBenefit}
+            onChange={(e) => setNewBenefit(e.target.value)}
+            className="mt-1 input input-bordered w-full"
+          />
+        </div>
+        <div className="flex flex-col mt-2">
+          <label className="text-sm text-gray-500">Utilization Rate (%)</label>
+          <input
+            type="number"
+            value={newUtilizationRate}
+            onChange={(e) => setNewUtilizationRate(Number(e.target.value))}
+            className="mt-1 input input-bordered w-full"
+          />
+        </div>
+        <div className="flex flex-col mt-2">
+          <label className="text-sm text-gray-500">Cost</label>
+          <input
+            type="number"
+            value={newCost}
+            onChange={(e) => setNewCost(Number(e.target.value))}
+            className="mt-1 input input-bordered w-full"
+          />
+        </div>
         <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 rounded-md w-full mt-4"
+          className="mt-2 btn btn-primary"
+          onClick={handleAddBenefit}
         >
-          Add Data
+          Add Benefit
         </button>
-      </form>
-
-      {/* Table to display benefits data */}
-      <div>
-        <h3 className="text-xl font-semibold mb-4">Benefits Data</h3>
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg">
-          <thead>
-            <tr className="bg-gray-100 border-b">
-              <th className="px-4 py-2 text-left">Benefit Name</th>
-              <th className="px-4 py-2 text-left">Utilization (%)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.length > 0 ? (
-              data.map((item, index) => (
-                <tr key={index} className="border-b">
-                  <td className="px-4 py-2">{item.benefitName}</td>
-                  <td className="px-4 py-2">{item.utilization.toFixed(2)}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="2" className="px-4 py-2 text-center text-gray-500">No data available</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
       </div>
     </div>
   );
 };
 
-export default BenefitsUtilizationsAnalysis;
+export default BenefitsUtilizationAnalysis;
