@@ -19,7 +19,7 @@ const SalaryPlanning = () => {
         <input
           type="text"
           className="input input-bordered w-full mt-1"
-          placeholder="Enter employee name"
+          placeholder="Enter a name"
         />
       </div>
       
