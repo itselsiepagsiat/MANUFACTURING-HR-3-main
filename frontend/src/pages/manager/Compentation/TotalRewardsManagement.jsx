@@ -29,7 +29,7 @@ const TotalRewardsManagement = () => {
 
         {/* Bonuses Input */}
         <div>
-          <label className="block text-sm font-medium text-gray-600">Bonuses</label>
+          <label className="block text-sm font-medium text-gray-600">Bonus</label>
           <input
             type="number"
             className="input input-bordered w-full mt-1"
