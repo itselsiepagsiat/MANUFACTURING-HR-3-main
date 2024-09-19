@@ -49,7 +49,7 @@ const LeaveManagement = () => {
               className="input input-bordered w-full mt-1"
               value={employee}
               onChange={(e) => setEmployee(e.target.value)}
-              placeholder="e.g., Elsie"
+              placeholder="e.g., Name"
             />
           </div>
           <div>
@@ -59,7 +59,7 @@ const LeaveManagement = () => {
               className="input input-bordered w-full mt-1"
               value={leaveType}
               onChange={(e) => setLeaveType(e.target.value)}
-              placeholder="e.g., Sick Leave, Vacation"
+              placeholder="e.g., Sick Leave"
             />
           </div>
           <div>
