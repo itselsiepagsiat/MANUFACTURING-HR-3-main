@@ -10,7 +10,7 @@ const laborLaws = [
   },
   {
     id: 2,
-    title: 'Working Hours Regulation',
+    title: 'Working Hours Regulations',
     description: 'Regulates the maximum working hours and provides guidelines for overtime pay.',
     link: '#',
   },
