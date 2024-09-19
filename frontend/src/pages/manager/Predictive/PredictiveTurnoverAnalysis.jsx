@@ -1,52 +1,61 @@
-import React from 'react';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
-
-// Register the required components of Chart.js
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
+import React, { useState, useEffect } from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const PredictiveTurnoverAnalysis = () => {
-  // Example data for the bar chart
-  const data = {
-    labels: ['Q1', 'Q2', 'Q3', 'Q4'], // Example time periods
-    datasets: [
-      {
-        label: 'Predicted Turnover Rate (%)',
-        data: [10, 15, 8, 12], // Example turnover rates
-        backgroundColor: '#4CAF50', // Green color for the bars
-        borderColor: '#388E3C',
-        borderWidth: 1,
-      },
-    ],
-  };
+  const [data, setData] = useState([
+    { month: 'Jan', turnover: 100, prediction: 120 },
+    { month: 'Feb', turnover: 120, prediction: 140 },
+    { month: 'Mar', turnover: 140, prediction: 160 },
+    { month: 'Apr', turnover: 160, prediction: 180 },
+    { month: 'May', turnover: 180, prediction: 200 },
+    { month: 'Jun', turnover: 200, prediction: 220 },
+  ]);
 
-  const options = {
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      tooltip: {
-        callbacks: {
-          label: (tooltipItem) => {
-            return `Turnover Rate: ${tooltipItem.raw}%`;
-          },
-        },
-      },
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-  };
+  const [selectedMonth, setSelectedMonth] = useState('Jan');
+
+  useEffect(() => {
+    const filteredData = data.filter((item) => item.month === selectedMonth);
+    if (filteredData.length > 0) {
+      console.log(`Turnover for ${selectedMonth}: ${filteredData[0].turnover}`);
+      console.log(`Prediction for ${selectedMonth}: ${filteredData[0].prediction}`);
+    }
+  }, [selectedMonth, data]);
 
   return (
-    <div className="p-6 max-w-4xl  shadow-md rounded-lg">
-      <h1 className="text-2xl font-bold mb-4">Predictive Turnover Analysis</h1>
-      <p className="mb-4 text-white-700">
-        This chart displays the predicted employee turnover rates for each quarter. 
-        Analyzing these predictions helps in planning and implementing strategies to reduce turnover.
-      </p>
-      <div className="h-64">
-        <Bar data={data} options={options} />
+    <div className="container mx-auto p-4 pt-6 mt-10">
+      <h1 className="text-3xl font-bold mb-4">Predictive Turnover Analysis</h1>
+      <div className="flex flex-wrap justify-center mb-4">
+        {data.map((item) => (
+          <button
+            key={item.month}
+            className={`btn btn-primary mx-2 ${
+              selectedMonth === item.month ? 'btn-active' : ''
+            }`}
+            onClick={() => setSelectedMonth(item.month)}
+          >
+            {item.month}
+          </button>
+        ))}
       </div>
+      <LineChart
+        width={800}
+        height={400}
+        data={data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="turnover" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="prediction" stroke="#82ca9d" />
+      </LineChart>
     </div>
   );
 };
