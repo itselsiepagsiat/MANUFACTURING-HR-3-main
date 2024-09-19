@@ -43,7 +43,7 @@ const FlexibleBenefits = () => {
               className="input input-bordered w-full mt-1"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g., Elsie"
+              placeholder="e.g., Name"
             />
           </div>
           <div>
