@@ -37,13 +37,13 @@ const RecognitionPrograms = () => {
         <h2 className="text-lg font-semibold mb-2">Add New Recognition Program</h2>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-600">Program Name</label>
+            <label className="block text-sm font-medium text-gray-600">Name</label>
             <input
               type="text"
               className="input input-bordered w-full mt-1"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g., Elsie"
+              placeholder="e.g., Name"
             />
           </div>
           <div>
@@ -63,7 +63,7 @@ const RecognitionPrograms = () => {
               className="input input-bordered w-full mt-1"
               value={reward}
               onChange={(e) => setReward(e.target.value)}
-              placeholder="e.g., ₱5000"
+              placeholder="e.g., ₱0.00"
             />
           </div>
           <button
