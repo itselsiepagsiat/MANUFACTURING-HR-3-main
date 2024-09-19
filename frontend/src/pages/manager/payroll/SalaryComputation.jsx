@@ -14,7 +14,7 @@ const SalaryComputation = () => {
       <h1 className="text-2xl font-bold mb-4">Salary Computation</h1>
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-600">Base Salary</label>
+          <label className="block text-sm font-medium text-gray-700">Base Salary</label>
           <input
             type="number"
             className="input input-bordered w-full mt-1"
@@ -24,7 +24,7 @@ const SalaryComputation = () => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-600">Allowances</label>
+          <label className="block text-sm font-medium text-gray-700">Allowances</label>
           <input
             type="number"
             className="input input-bordered w-full mt-1"
@@ -34,7 +34,7 @@ const SalaryComputation = () => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-600">Deductions</label>
+          <label className="block text-sm font-medium text-gray-700">Deductions</label>
           <input
             type="number"
             className="input input-bordered w-full mt-1"
