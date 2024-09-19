@@ -40,7 +40,7 @@ const DeductionsManagement = () => {
               className="input input-bordered w-full mt-1"
               value={deductionType}
               onChange={(e) => setDeductionType(e.target.value)}
-              placeholder="e.g., Tax, SSS"
+              placeholder="e.g., Tax"
             />
           </div>
           <div>
