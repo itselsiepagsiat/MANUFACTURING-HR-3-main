@@ -22,7 +22,7 @@ const regulations = [
   },
   {
     id: 4,
-    title: 'Workplace Safety Standards',
+    title: 'Workplace Safety Standard',
     summary: 'Establishes safety standards and practices to ensure a safe working environment.',
     link: '#',
   },
