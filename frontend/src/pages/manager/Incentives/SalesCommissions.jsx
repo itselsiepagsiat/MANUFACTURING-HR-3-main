@@ -49,7 +49,7 @@ const SalesCommissions = () => {
               className="input input-bordered w-full mt-1"
               value={employeeName}
               onChange={(e) => setEmployeeName(e.target.value)}
-              placeholder="e.g., Elsie"
+              placeholder="e.g., Name"
             />
           </div>
           <div>
@@ -59,7 +59,7 @@ const SalesCommissions = () => {
               className="input input-bordered w-full mt-1"
               value={salesAmount}
               onChange={(e) => setSalesAmount(e.target.value)}
-              placeholder="e.g., 10000"
+              placeholder="e.g., 1000"
               step="0.01"
             />
           </div>
