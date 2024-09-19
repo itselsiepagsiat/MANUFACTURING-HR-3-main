@@ -55,12 +55,6 @@ const UserList = () => {
                   >
                     Edit
                   </button>
-                  <button 
-                    className="btn btn-error btn-sm" 
-                    onClick={() => handleDelete(user.id)}
-                  >
-                    Delete
-                  </button>
                 </td>
               </tr>
             ))}
