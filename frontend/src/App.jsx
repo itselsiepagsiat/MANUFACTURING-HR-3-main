@@ -35,8 +35,9 @@ import Regulations from './pages/manager/Compliance/Regulations';
 import PredictiveTurnoverAnalysis from './pages/manager/Predictive/PredictiveTurnoverAnalysis';
 import EmployeePerformanceForecasting from './pages/manager/Predictive/EmployeePerformanceForecasting';
 import BenefitsUtilizationsAnalysis from './pages/manager/Predictive/BenefitsUtilizationsAnalysis';
-import CompensationOptimization from './pages/manager/Predictive/CompensationOptimization';
 import RequestBudget from './pages/manager/Finance/RequestBudget';
+import Compensation from './pages/manager/Predictive/Compensation';
+
 
 const App = () => {
   const { checkAuth, isAuthenticated } = useAuthStore();
@@ -84,8 +85,8 @@ const App = () => {
                   <Route path="/predictive-turnover-analysis" element={<ProtectedRoute> <PredictiveTurnoverAnalysis/> </ProtectedRoute>} />
                   <Route path="/employee-performance-forecasting" element={<ProtectedRoute> <EmployeePerformanceForecasting/> </ProtectedRoute>} />
                   <Route path="/benefits-utilization-analysis" element={<ProtectedRoute> <BenefitsUtilizationsAnalysis/> </ProtectedRoute>} />
-                  <Route path="/compensation-optimization" element={<ProtectedRoute> <CompensationOptimization/> </ProtectedRoute>} />
                   <Route path="/request-budget" element={<ProtectedRoute> <RequestBudget/> </ProtectedRoute>} />
+                  <Route path="/compensation" element={<ProtectedRoute> <Compensation/> </ProtectedRoute>} />
 
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
